@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-training" />
-        <module name="Innova20220606" />
       </profile>
     </annotationProcessing>
   </component>

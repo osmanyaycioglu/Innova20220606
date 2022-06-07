@@ -7,6 +7,7 @@
   <groupId>org.training.innova</groupId>
   <artifactId>Innova20220606</artifactId>
   <version>1.0.0</version>
+  <packaging>pom</packaging>
 
   <name>Innova20220606</name>
   <!-- FIXME change it to the project's website -->
