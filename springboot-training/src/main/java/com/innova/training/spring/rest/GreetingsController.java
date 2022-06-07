@@ -1,6 +1,7 @@
 package com.innova.training.spring.rest;
 
 import com.innova.training.spring.HelloWorld;
+import com.innova.training.spring.rest.models.PersonRest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -58,7 +59,7 @@ public class GreetingsController {
 
     @PostMapping("/hello4")
     //@ResponseStatus(HttpStatus.NON_AUTHORITATIVE_INFORMATION)
-    public HelloResponse hello4(@RequestBody Person person) {
+    public HelloResponse hello4(@RequestBody PersonRest person) {
         System.out.println(person);
         return HelloResponse.create()
                             .setDesc("person alındı")
@@ -67,7 +68,7 @@ public class GreetingsController {
 
 
     @PostMapping("/hello6")
-    public ResponseEntity<HelloResponse> hello6(@RequestBody Person person) {
+    public ResponseEntity<HelloResponse> hello6(@RequestBody PersonRest person) {
         System.out.println(person);
         return ResponseEntity.status(HttpStatus.NON_AUTHORITATIVE_INFORMATION)
                              .header("forword-me",

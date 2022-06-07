@@ -1,6 +1,6 @@
 package com.innova.training.spring.person.rest;
 
-import com.innova.training.spring.rest.Person;
+import com.innova.training.spring.rest.models.PersonRest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class PersonProvisionControllerV2 {
 
     @PutMapping
-    public String activate(Person person){
+    public String activate(PersonRest person){
         return "OK";
     }
 

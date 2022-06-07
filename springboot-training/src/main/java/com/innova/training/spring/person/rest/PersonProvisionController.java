@@ -1,6 +1,8 @@
 package com.innova.training.spring.person.rest;
 
-import com.innova.training.spring.rest.Person;
+import com.innova.training.spring.person.models.Person;
+import com.innova.training.spring.person.rest.mappers.IPersonMapper;
+import com.innova.training.spring.rest.models.PersonRest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,11 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class PersonProvisionController {
 
     @PostMapping("/activate")
-    public String activate(@Validated @RequestBody Person person) {
-        if (person.getName() == null || person.getName()
-                                              .isEmpty()) {
-            throw new IllegalStateException("name null olamaz");
-        }
+    public String activate(@Validated @RequestBody PersonRest personRest) {
+        Person person = IPersonMapper.PERSON_MAPPER.toPerson(personRest);
         return "OK";
     }
 
@@ -31,5 +30,6 @@ public class PersonProvisionController {
     public String reeactivate(@RequestParam("pid") Long personId) {
         return "OK";
     }
+
 
 }

@@ -1,10 +1,10 @@
-package com.innova.training.spring.rest;
+package com.innova.training.spring.rest.models;
 
 import com.innova.training.spring.validation.StartWith;
 
 import javax.validation.constraints.*;
 
-public class Person {
+public class PersonRest {
     @NotEmpty(message = "name null olamaz")
     @Size(min = 2,max = 20)
     @StartWith("n:")

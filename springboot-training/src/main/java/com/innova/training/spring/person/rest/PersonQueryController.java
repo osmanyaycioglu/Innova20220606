@@ -1,6 +1,6 @@
 package com.innova.training.spring.person.rest;
 
-import com.innova.training.spring.rest.Person;
+import com.innova.training.spring.rest.models.PersonRest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,12 +13,12 @@ import java.util.List;
 public class PersonQueryController {
 
     @GetMapping("/get/one")
-    public Person getPerson(@RequestParam("pid")  Long personId){
+    public PersonRest getPerson(@RequestParam("pid")  Long personId){
         return null;
     }
 
     @GetMapping("/get/all")
-    public List<Person> getPerson(){
+    public List<PersonRest> getPerson(){
         return null;
     }
 
