@@ -21,8 +21,10 @@
 
   <modules>
     <module>springboot-training</module>
-
+    <module>node-discovery</module>
+    <module>node-configuration</module>
   </modules>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
