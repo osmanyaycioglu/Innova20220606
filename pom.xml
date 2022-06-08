@@ -23,6 +23,8 @@
     <module>springboot-training</module>
     <module>node-discovery</module>
     <module>node-configuration</module>
+    <module>ms-order</module>
+    <module>ms-restaurant</module>
   </modules>
 
   <dependencies>
