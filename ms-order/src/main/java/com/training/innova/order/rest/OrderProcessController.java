@@ -22,4 +22,9 @@ public class OrderProcessController {
         return orderProcessService.placeOrder(order);
     }
 
+    @PostMapping("/place2")
+    public OrderInfo placeOrder2(@Validated @RequestBody Order order){
+        return orderProcessService.placeOrder2(order);
+    }
+
 }

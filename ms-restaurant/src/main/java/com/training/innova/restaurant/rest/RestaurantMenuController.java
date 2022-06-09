@@ -1,10 +1,7 @@
 package com.training.innova.restaurant.rest;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.security.SecureRandom;
@@ -30,6 +27,11 @@ public class RestaurantMenuController {
         priceInfo.setPrice(total);
         priceInfo.setDesc("Response from : " + port);
         return priceInfo;
+    }
+
+    @GetMapping("/get/list/{menuname}")
+    public String getMenu(@PathVariable("menuname") String menuName){
+        return "Menu " + menuName;
     }
 
 }

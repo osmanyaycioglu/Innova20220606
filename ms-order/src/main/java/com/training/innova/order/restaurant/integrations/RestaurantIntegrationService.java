@@ -5,6 +5,7 @@ import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
 import com.training.innova.order.rest.models.Order;
 import com.training.innova.order.rest.models.OrderInfo;
+import com.training.innova.order.restaurant.integrations.feign.IRestaurantIntegration;
 import com.training.innova.order.restaurant.integrations.models.Menu;
 import com.training.innova.order.restaurant.integrations.models.PriceInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class RestaurantIntegrationService {
     @Autowired
     private EurekaClient eurekaClient;
 
+    @Autowired
+    private IRestaurantIntegration ri;
+
     public PriceInfo getPrice(Order order) {
         Menu menu = new Menu();
         menu.setMenuId(UUID.randomUUID()
@@ -33,6 +37,16 @@ public class RestaurantIntegrationService {
                                                          PriceInfo.class);
         return priceInfo;
     }
+
+    public PriceInfo getPriceFeign(Order order) {
+        Menu menu = new Menu();
+        menu.setMenuId(UUID.randomUUID()
+                           .toString());
+        menu.setMeals(order.getMeals());
+        PriceInfo priceInfo = ri.getPrice(menu);
+        return priceInfo;
+    }
+
 
     public PriceInfo getPriceEurekaClient(Order order) {
         Application restaurant = eurekaClient.getApplication("RESTAURANT");

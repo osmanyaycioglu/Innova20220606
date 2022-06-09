@@ -23,4 +23,12 @@ public class OrderProcessService {
     }
 
 
+    public OrderInfo placeOrder2(Order order) {
+        PriceInfo price = ris.getPriceFeign(order);
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setOrderId(price.getMenuId());
+        orderInfo.setStatus("Hazırlanıyor 2 : " + price.getDesc());
+        orderInfo.setPrice(price.getPrice());
+        return orderInfo;
+    }
 }
