@@ -1,0 +1,58 @@
+server:
+  port: ${app.port:10000}
+spring:
+  application:
+    name: order
+  config:
+    import: configserver:http://127.0.0.1:8888
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+        maxRetriesOnSameServiceInstance: 0
+        maxRetriesOnNextServiceInstance: 3
+        retryOnAllOperations: true
+resilience4j:
+  retry:
+    instances:
+      restaurantretry:
+        maxAttempts: 2
+        waitDuration: 200
+        maxRetryAttempts: 2
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        exponentialMaxWaitDuration: 500
+#        retryExceptions:
+#          - java.lang.IllegalArgumentException
+#        ignoreExceptions:
+#          - java.lang.NullPointerException
+        retryExceptionPredicate: com.training.innova.order.restaurant.integrations.resilience.retry.ChooseToRetry
+        resultPredicate: com.training.innova.order.restaurant.integrations.resilience.retry.MyResultPredicate
+      testretry:
+        maxAttempts: 3
+        waitDuration: 200
+        maxRetryAttempts: 3
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        exponentialMaxWaitDuration: 500
+        #        retryExceptions:
+        #          - java.lang.IllegalArgumentException
+        #        ignoreExceptions:
+        #          - java.lang.NullPointerException
+        retryExceptionPredicate: com.training.innova.order.restaurant.integrations.resilience.retry.ChooseToRetry
+  circuitbreaker:
+    metrics:
+      enabled: true
+    instances:
+      xyzcs1:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 20
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 30
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 10
+        automaticTransitionFromOpenToHalfOpenEnabled: false
+        slowCallDurationThreshold: 500ms
+        slowCallRateThreshold: 30
+        registerHealthIndicator: true
+        allowHealthIndicatorToFail: true

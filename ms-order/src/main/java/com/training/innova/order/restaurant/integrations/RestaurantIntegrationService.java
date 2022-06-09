@@ -8,6 +8,7 @@ import com.training.innova.order.rest.models.OrderInfo;
 import com.training.innova.order.restaurant.integrations.feign.IRestaurantIntegration;
 import com.training.innova.order.restaurant.integrations.models.Menu;
 import com.training.innova.order.restaurant.integrations.models.PriceInfo;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,7 +28,11 @@ public class RestaurantIntegrationService {
     @Autowired
     private IRestaurantIntegration ri;
 
+    private int count = 1;
+
+    @Retry(name = "restaurantretry")
     public PriceInfo getPrice(Order order) {
+        count++;
         Menu menu = new Menu();
         menu.setMenuId(UUID.randomUUID()
                            .toString());
@@ -35,6 +40,10 @@ public class RestaurantIntegrationService {
         PriceInfo priceInfo = restTemplate.postForObject("http://RESTAURANT/api/v1/restaurant/menu/price",
                                                          menu,
                                                          PriceInfo.class);
+        if (count % 3 == 0) {
+            priceInfo.setMenuId(null);
+        }
+        System.out.println("Count : " + count);
         return priceInfo;
     }
 
@@ -58,11 +67,11 @@ public class RestaurantIntegrationService {
         menu.setMeals(order.getMeals());
         RestTemplate rt = new RestTemplate();
         PriceInfo priceInfo = rt.postForObject("http://" + instances.get(0)
-                                                                              .getIPAddr() + ":" + instances.get(0)
-                                                                                                            .getPort()
-                                                                 + "/api/v1/restaurant/menu/price",
-                                                         menu,
-                                                         PriceInfo.class);
+                                                                    .getIPAddr() + ":" + instances.get(0)
+                                                                                                  .getPort()
+                                                       + "/api/v1/restaurant/menu/price",
+                                               menu,
+                                               PriceInfo.class);
         return priceInfo;
     }
 
