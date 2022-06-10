@@ -25,6 +25,7 @@
     <module>node-configuration</module>
     <module>ms-order</module>
     <module>ms-restaurant</module>
+    <module>common-error</module>
   </modules>
 
   <dependencies>

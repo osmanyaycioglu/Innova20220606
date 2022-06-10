@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ms-restaurant" />
         <module name="node-configuration" />
+        <module name="common-error" />
         <module name="node-discovery" />
         <module name="ms-order" />
       </profile>
@@ -25,6 +26,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common-error" options="-parameters" />
       <module name="ms-order" options="-parameters" />
       <module name="ms-restaurant" options="-parameters" />
       <module name="node-configuration" options="-parameters" />

@@ -72,7 +72,7 @@ public class ClientConfig {
             long delta = System.nanoTime();
             HttpHeaders headersLoc = requestParam.getHeaders();
             headersLoc.add("X-Origin",
-                           "restaurant.subdomain.order.order");
+                           "order.subdomain.order.order");
             ClientHttpResponse responseLoc = executionParam.execute(requestParam,
                                                                     bodyParam);
             System.out.println("Delta : " + (System.nanoTime() - delta));

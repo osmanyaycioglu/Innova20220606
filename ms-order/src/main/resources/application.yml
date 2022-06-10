@@ -56,3 +56,30 @@ resilience4j:
         slowCallRateThreshold: 30
         registerHealthIndicator: true
         allowHealthIndicatorToFail: true
+info:
+  osman:
+    java:
+      deneme: 1.2.3
+    app:
+      version: 1.0.0.100
+      mavenVersion: @project.version@
+management:
+  info:
+    env:
+      enabled: true
+app:
+  info:
+    domain: order
+    subDomain: order
+    boundedContext: orderProcess
+    microservice: ${spring.application.name}
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 1000
+        readTimeout: 5000
+        decode404: false
+        loggerLevel: FULL
+        requestInterceptors:
+          - com.training.innova.order.restaurant.integrations.MyFeignInterceptor

@@ -8,6 +8,7 @@ import com.training.innova.order.rest.models.OrderInfo;
 import com.training.innova.order.restaurant.integrations.feign.IRestaurantIntegration;
 import com.training.innova.order.restaurant.integrations.models.Menu;
 import com.training.innova.order.restaurant.integrations.models.PriceInfo;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,8 @@ public class RestaurantIntegrationService {
         return priceInfo;
     }
 
+    @Retry(name = "restaurantretry")
+    @CircuitBreaker(name = "xyzcs1")
     public PriceInfo getPriceFeign(Order order) {
         Menu menu = new Menu();
         menu.setMenuId(UUID.randomUUID()

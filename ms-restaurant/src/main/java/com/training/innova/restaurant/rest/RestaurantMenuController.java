@@ -13,9 +13,14 @@ public class RestaurantMenuController {
 
     @Value("${server.port}")
     private int port;
+    private int counter = 0;
 
     @PostMapping("/price")
     public PriceInfo getPrice(@RequestBody Menu menu) {
+        counter++;
+        if (counter % 3 == 0){
+            throw new IllegalArgumentException("test için");
+        }
         Random random = new SecureRandom();
         BigDecimal total = BigDecimal.ZERO;
         for (String meal : menu.getMeals()) {
