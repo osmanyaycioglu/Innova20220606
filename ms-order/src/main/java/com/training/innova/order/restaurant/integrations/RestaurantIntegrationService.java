@@ -38,7 +38,7 @@ public class RestaurantIntegrationService {
         menu.setMenuId(UUID.randomUUID()
                            .toString());
         menu.setMeals(order.getMeals());
-        PriceInfo priceInfo = restTemplate.postForObject("http://RESTAURANT/api/v1/restaurant/menu/price",
+        PriceInfo priceInfo = restTemplate.postForObject("http://RESTAURANT-APIGW/api/v1/restaurant/menu/price",
                                                          menu,
                                                          PriceInfo.class);
         if (count % 3 == 0) {

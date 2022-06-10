@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ms-restaurant" />
+        <module name="node-restaurant-apigw" />
         <module name="node-configuration" />
         <module name="common-error" />
         <module name="node-discovery" />
@@ -31,6 +32,7 @@
       <module name="ms-restaurant" options="-parameters" />
       <module name="node-configuration" options="-parameters" />
       <module name="node-discovery" options="-parameters" />
+      <module name="node-restaurant-apigw" options="-parameters" />
       <module name="springboot-training" options="-parameters" />
     </option>
   </component>
