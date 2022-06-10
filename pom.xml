@@ -27,6 +27,7 @@
     <module>ms-restaurant</module>
     <module>common-error</module>
     <module>node-restaurant-apigw</module>
+    <module>ms-notify</module>
   </modules>
 
   <dependencies>
